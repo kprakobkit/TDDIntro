@@ -35,7 +35,6 @@ public class FactorialTests {
     }
 
     @Test
-    @Ignore
     public void shouldReturnSixWhenNumberIsThree(){
         assertThat(factorial.compute(3), is(6));
     }
