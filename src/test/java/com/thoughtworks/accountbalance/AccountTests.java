@@ -9,17 +9,14 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class AccountTests {
-    int startingBalance = 100;
-    Account acct;
-
-    @Before
-    public void setUpTestAccountWithStartingBalance() {
-        acct = new Account(startingBalance);
-    }
+    private Account acct;
 
     @Test
     public void shouldIncreaseMyBalanceWhenIDepositMoney(){
+        int startingBalance = 100;
         int depositAmount = 50;
+
+        acct = new Account(startingBalance);
 
         acct.deposit(depositAmount);
 
