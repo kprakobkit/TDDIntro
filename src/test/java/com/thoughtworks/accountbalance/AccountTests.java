@@ -10,11 +10,14 @@ import static org.junit.Assert.assertThat;
 
 public class AccountTests {
     private Account acct;
+    private int startingBalance;
+    private int depositAmount;
+    private int withdrawAmount;
 
     @Test
     public void shouldIncreaseMyBalanceWhenIDepositMoney(){
-        int startingBalance = 100;
-        int depositAmount = 50;
+        startingBalance = 100;
+        depositAmount = 50;
 
         acct = new Account(startingBalance);
 
@@ -25,24 +28,24 @@ public class AccountTests {
 
     @Test
     public void shouldDecreaseMyBalanceWhenIWithdrawMoney(){
-        int startingBalance = 100;
-        int depositAmount = 50;
+        startingBalance = 100;
+        withdrawAmount = 50;
 
         acct = new Account(startingBalance);
 
-        acct.withdraw(depositAmount);
+        acct.withdraw(withdrawAmount);
 
-        assertThat(acct.getBalance(), is(startingBalance - depositAmount));
+        assertThat(acct.getBalance(), is(startingBalance - withdrawAmount));
     }
 
     @Test
     public void shouldNotDecreaseMyBalanceWhenIWithdrawMoneyAndDoNotHaveEnoughToCoverTheWithdrawal(){
-        int startingBalance = 50;
-        int depositAmount = 100;
+        startingBalance = 50;
+        withdrawAmount = 100;
 
         acct = new Account(startingBalance);
 
-        acct.withdraw(depositAmount);
+        acct.withdraw(withdrawAmount);
 
         assertThat(acct.getBalance(), is(startingBalance));
     }
