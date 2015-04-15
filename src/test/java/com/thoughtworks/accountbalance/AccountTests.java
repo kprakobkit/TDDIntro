@@ -24,9 +24,15 @@ public class AccountTests {
     }
 
     @Test
-    @Ignore
     public void shouldDecreaseMyBalanceWhenIWithdrawMoney(){
+        int startingBalance = 100;
+        int depositAmount = 50;
 
+        acct = new Account(startingBalance);
+
+        acct.withdraw(depositAmount);
+
+        assertThat(acct.getBalance(), is(startingBalance - depositAmount));
     }
 
     @Test
