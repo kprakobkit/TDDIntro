@@ -36,8 +36,14 @@ public class AccountTests {
     }
 
     @Test
-    @Ignore
     public void shouldNotDecreaseMyBalanceWhenIWithdrawMoneyAndDoNotHaveEnoughToCoverTheWithdrawal(){
+        int startingBalance = 50;
+        int depositAmount = 100;
 
+        acct = new Account(startingBalance);
+
+        acct.withdraw(depositAmount);
+
+        assertThat(acct.getBalance(), is(startingBalance));
     }
 }
