@@ -5,6 +5,7 @@ public class Factorial {
         if (i < 0) {
             throw new IllegalArgumentException("Number can't be negative");
         }
+
         if (i == 0) {
             return 1;
         } else {
