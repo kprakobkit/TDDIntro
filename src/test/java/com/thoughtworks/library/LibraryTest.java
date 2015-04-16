@@ -26,13 +26,19 @@ public class LibraryTest {
     private PrintStream printStream;
     private String titleOne;
     private String titleTwo;
+    private String formattedTimeString;
+    private DateTime time;
+    private DateTimeFormatter dateTimeFormatter;
 
     @Before
     public void setupLibraryAndBookInstance() {
         books = new ArrayList<>();
+        time = new DateTime();
         printStream = mock(PrintStream.class);
+        dateTimeFormatter = mock(DateTimeFormatter.class);
         titleOne = "Book Title One";
         titleTwo = "Book Title Two";
+        formattedTimeString = "FormattedTimeString";
     }
 
 
@@ -100,24 +106,24 @@ public class LibraryTest {
     
     @Test
     public void shouldDisplayFormattedTime() {
-        List<String> books = new ArrayList<>();
-        PrintStream printStream = mock(PrintStream.class);
-        DateTime time = new DateTime();
-        DateTimeFormatter dateTimeFormatter = mock(DateTimeFormatter.class);
+        when(dateTimeFormatter.print(time)).thenReturn(formattedTimeString);
 
-        when(dateTimeFormatter.print(time)).thenReturn("FormattedTimeString");
+        Library library = new Library(books, printStream, dateTimeFormatter);
+
+        library.welcome(time);
+
+        verify(printStream).println(contains(formattedTimeString));
+    }
+
+    @Test
+    @Ignore
+    public void shouldDisplayFormattedTimeWhenItIsAnEmptyString() {
+        when(dateTimeFormatter.print(time)).thenReturn("");
 
         Library library = new Library(books, printStream, dateTimeFormatter);
 
         library.welcome(time);
 
         verify(printStream).println(contains("FormattedTimeString"));
-    }
-
-    @Test
-    @Ignore
-    public void shouldDisplayFormattedTimeWhenItIsAnEmptyString() {
-
-        // implement me
     }
 }
