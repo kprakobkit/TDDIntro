@@ -83,7 +83,6 @@ public class LibraryTest {
     
     // This one is done for you
     @Test
-    @Ignore
     public void shouldWelcomeUser() {
         List<String> books = new ArrayList<>();
         PrintStream printStream = mock(PrintStream.class);
@@ -100,7 +99,6 @@ public class LibraryTest {
     }
     
     @Test
-    @Ignore
     public void shouldDisplayFormattedTime() {
         List<String> books = new ArrayList<>();
         PrintStream printStream = mock(PrintStream.class);
@@ -113,7 +111,7 @@ public class LibraryTest {
 
         library.welcome(time);
 
-        // add a verify here
+        verify(printStream).println(contains("FormattedTimeString"));
     }
 
     @Test
